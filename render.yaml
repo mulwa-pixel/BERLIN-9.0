@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: berlin-frontend
+    runtime: node
+    repo: https://github.com/mulwa-pixel/BERLIN-9.0
+    branch: main
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+  - type: web
+    name: berlin-api
+    runtime: python
+    repo: https://github.com/mulwa-pixel/BERLIN-9.0
+    branch: main
+    rootDir: backend/api-gateway
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
